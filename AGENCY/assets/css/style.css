@@ -113,6 +113,12 @@ a {
   color: var(--color-dark);
 }
 
+.error{
+  display: none;
+  color: red;
+  font-weight: 900;
+  font-style: italic;
+}
 h1,
 h2,
 h3 {
@@ -995,7 +1001,7 @@ h3 {
 
 .contact-label {
   position: absolute;
-  top: 0.4rem;
+  top: -0.5rem;
   width: 100%;
   font-size: var(--small-font-size);
   transition: 0.3s;
@@ -1010,7 +1016,7 @@ h3 {
 }
 
 .contact-input:focus + .contact-label {
-  top: -0.75rem;
+  top: -1.5rem;
   left: 0;
   z-index: 10;
   color: var(--color-primary);

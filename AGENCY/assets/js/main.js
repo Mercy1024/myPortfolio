@@ -56,21 +56,23 @@ function navHighlighter() {
   // get current scroll position
   let scrollY = window.pageYOffset;
   //Now we loop through sections to get height, top and Id values for each
-  sections.forEach(current => {
+  sections.forEach((current) => {
     const sectionHeight = current.offsetHeight;
     const sectionTop = current.offsetTop - 58, // we subtract 100 to make sure we are in the middle of the section
       sectionId = current.getAttribute("id");
-    
+
     // if our current scroll position enters the space where current section on the screen is, add.active class to the correspondnig navigation linkAction,else remove it.
     // To know which link needs an active class, we use sectionId variable we are getting while looping through sections as a Selector
     if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      document.querySelector(".nav-menu a[href*="+sectionId +"]").classList.add("active-link");
+      document
+        .querySelector(".nav-menu a[href*=" + sectionId + "]")
+        .classList.add("active-link");
     } else {
-        document
-          .querySelector(".nav-menu a[href*=" + sectionId + "]")
-          .classList.remove("active-link");
+      document
+        .querySelector(".nav-menu a[href*=" + sectionId + "]")
+        .classList.remove("active-link");
     }
-  })
+  });
 }
 
 /*=============== PORTFOLIO ITEM FILTER ===============*/
@@ -96,7 +98,7 @@ for (let i = 0; i < totalFilterBtn; i++) {
         portfolioItems[k].classList.remove("show");
       }
 
-      if ((filterValue === "all")) {
+      if (filterValue === "all") {
         portfolioItems[k].classList.remove("hide");
         portfolioItems[k].classList.add("show");
       }
@@ -229,4 +231,46 @@ Bg3.addEventListener("click", () => {
   Bg1.classList.remove("active");
   Bg2.classList.remove("active");
   changeBG();
+});
+
+/*===== FORM SUBMISSION =====*/
+const SubmitBtn = document.querySelector(".contact-form a");
+const userMessage = document.querySelector(".contact-form .userMessage");
+const mail = document.querySelector(".contact-form .mail");
+const subject = document.querySelector(".contact-form .subject");
+const errorAlert = document.querySelector(".error");
+
+const SendMail = () => {
+  Email.send({
+    Host: "smtp.elasticemail.com",
+    Username: "kaydenmm89@gmail.com",
+    Password: "51A6557C4F5AF759C83FFDEE73977A028844",
+    To: "kaydenmm89@gmail.com",
+    From: "kaydenmm89@gmail.com",
+    Subject: `${mail.value}:   ${subject.value}`,
+    Body: `${userMessage.value}`,
+  }).then(() => {
+    SubmitBtn.style.backgroundColor = "rgb(30, 255, 0)";
+    SubmitBtn.textContent = "Submitted";
+    setTimeout(window.location.reload(), 2000);
+  });
+};
+
+SubmitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  let name = mail.value,
+    subjectValue = subject.value,
+    userMessageValue = userMessage.value;
+
+  if (name == "" || subjectValue == "" || userMessageValue == "") {
+    SubmitBtn.style.display = "none";
+    errorAlert.style.display = "block";
+
+    setTimeout(() => {
+      errorAlert.style.display = "none";
+      SubmitBtn.style.display = "inline-block";
+    }, 2000);
+  } else {
+    SendMail();
+  }
 });
