@@ -786,6 +786,9 @@ h3 {
   transition: 0.3s;
   opacity: 0;
 }
+.portfolio-item .more-button img{
+  width: 100%;
+}
 
 .portfolio-item-inner:hover h3,
 .portfolio-item-inner:hover span {
