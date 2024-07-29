@@ -339,9 +339,10 @@ h3 {
 }
 
 .scroll-down {
-  position: absolute;
+  position: relative;
   bottom: var(--m-2-5);
   left: 0;
+  top: 2rem;
   width: 100%;
 }
 
@@ -460,6 +461,14 @@ h3 {
   max-width: 25%;
   margin-top: var(--m-2-5);
   text-align: center;
+}
+
+.facts{
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 
 .fact-item i {
